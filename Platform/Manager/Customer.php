@@ -96,7 +96,7 @@ class Customer
 
     private function SubGenerateCallTrace()
     {
-        $e = new Exception();
+        $e = new /Exception();
         $trace = explode("\n", $e->getTraceAsString());
         // reverse array to make steps line up chronologically
         $trace = array_reverse($trace);
