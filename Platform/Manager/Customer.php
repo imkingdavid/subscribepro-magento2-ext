@@ -67,7 +67,7 @@ class Customer
             $platformCustomer = $this->createPlatformCustomer($customer, $websiteId);
         } else {
             file_put_contents("/var/www/john-m2-1-6.spr0.com/var/log/test.log", "\n\n---------------\n\n" . $this->SubGenerateCallTrace() . "\n\n---------------\n\n", FILE_APPEND | LOCK_EX);
-            throw new NoSuchEntityException(__('Platform customer is not found.'));
+            return null;
         }
 
         return $platformCustomer;
