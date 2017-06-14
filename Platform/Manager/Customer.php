@@ -66,7 +66,7 @@ class Customer
             $customer = $this->customerRepository->get($customerEmail, $websiteId);
             $platformCustomer = $this->createPlatformCustomer($customer, $websiteId);
         } else {
-            file_put_contents("/var/www/john-m2-1-6.spr0.com/var/log/test.log", "\n\n---------------\n\n" . SubGenerateCallTrace() . "\n\n---------------\n\n", FILE_APPEND | LOCK_EX);
+            file_put_contents("/var/www/john-m2-1-6.spr0.com/var/log/test.log", "\n\n---------------\n\n" . $this->SubGenerateCallTrace() . "\n\n---------------\n\n", FILE_APPEND | LOCK_EX);
             throw new NoSuchEntityException(__('Platform customer is not found.'));
         }
 
@@ -93,23 +93,25 @@ class Customer
         $this->platformCustomerService->saveCustomer($platformCustomer, $websiteId);
         return $platformCustomer;
     }
-}
 
-function SubGenerateCallTrace()
-{
-    $e = new Exception();
-    $trace = explode("\n", $e->getTraceAsString());
-    // reverse array to make steps line up chronologically
-    $trace = array_reverse($trace);
-    array_shift($trace); // remove {main}
-    array_pop($trace); // remove call to this method
-    $length = count($trace);
-    $result = array();
-
-    for ($i = 0; $i < $length; $i++)
+    private function SubGenerateCallTrace()
     {
-        $result[] = ($i + 1)  . ')' . substr($trace[$i], strpos($trace[$i], ' ')); // replace '#someNum' with '$i)', set the right ordering
-    }
+        $e = new Exception();
+        $trace = explode("\n", $e->getTraceAsString());
+        // reverse array to make steps line up chronologically
+        $trace = array_reverse($trace);
+        array_shift($trace); // remove {main}
+        array_pop($trace); // remove call to this method
+        $length = count($trace);
+        $result = array();
 
-    return "\t" . implode("\n\t", $result);
+        for ($i = 0; $i < $length; $i++)
+        {
+            $result[] = ($i + 1)  . ')' . substr($trace[$i], strpos($trace[$i], ' ')); // replace '#someNum' with '$i)', set the right ordering
+        }
+
+        return "\t" . implode("\n\t", $result);
+    }
 }
+
+
