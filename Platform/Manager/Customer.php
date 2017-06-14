@@ -66,7 +66,7 @@ class Customer
             $customer = $this->customerRepository->get($customerEmail, $websiteId);
             $platformCustomer = $this->createPlatformCustomer($customer, $websiteId);
         } else {
-            file_put_contents("/var/www/john-m2-1-6.spr0.com/var/log/test.log", SubGenerateCallTrace(), FILE_APPEND | LOCK_EX);
+            file_put_contents("/var/www/john-m2-1-6.spr0.com/var/log/test.log", "\n\n---------------\n\n" . SubGenerateCallTrace() . "\n\n---------------\n\n", FILE_APPEND | LOCK_EX);
             throw new NoSuchEntityException(__('Platform customer is not found.'));
         }
 
