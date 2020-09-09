@@ -1,0 +1,20 @@
+<?php
+/**
+ * @var $block \Swarming\SubscribePro\Block\Payment\ApplePay
+ */
+
+if ($block->cartContainsSubscriptions() && $block->isCustomerLoggedIn()) {
+?>
+    <div class="sp-apple-pay-button-container" data-bind="scope: 'apple-pay-button-container'">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    </div>
+<?php
+}
+?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": <?php echo $block->getJsLayout();?>
+        }
+    }
+</script>

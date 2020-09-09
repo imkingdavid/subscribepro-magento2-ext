@@ -115,4 +115,13 @@ class PaymentProfile extends AbstractService
     {
         return $this->getService($websiteId)->loadProfileByToken($token);
     }
+
+    /**
+     * @param array $paymentProfileData
+     * @return \SubscribePro\Service\PaymentProfile\PaymentProfileInterface
+     */
+    public function createApplePayProfile(array $paymentProfileData = [], $websiteId = null)
+    {
+        return $this->getService($websiteId)->createApplePayProfile($paymentProfileData);
+    }
 }

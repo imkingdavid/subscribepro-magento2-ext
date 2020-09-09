@@ -121,4 +121,22 @@
             <resource ref="Magento_Cart::manage" />
         </resources>
     </route>
+    <route url="/V1/swarming_subscribepro/applepay/onshippingcontactselected" method="POST">
+        <service class="Swarming\SubscribePro\Api\ApplePayInterface" method="onShippingContactSelected"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    <route url="/V1/swarming_subscribepro/applepay/onshippingmethodselected" method="POST">
+        <service class="Swarming\SubscribePro\Api\ApplePayInterface" method="onShippingMethodSelected"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    <route url="/V1/swarming_subscribepro/applepay/onpaymentauthorized" method="POST">
+        <service class="Swarming\SubscribePro\Api\ApplePayInterface" method="onPaymentAuthorized"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
 </routes>
