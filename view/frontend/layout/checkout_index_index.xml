@@ -25,7 +25,7 @@
                                                                     </item>
                                                                 </item><!-- apple pay -->
                                                                 <item name="subscribe_pro_applepay" xsi:type="array">
-                                                                    <item name="component" xsi:type="string">Swarming_SubscribePro/js/view/payment/applepay/applepay-payment-method</item>
+                                                                    <item name="component" xsi:type="string">Swarming_SubscribePro/js/applepay/implementations/core-checkout/method-applepay</item>
                                                                     <item name="methods" xsi:type="array">
                                                                         <item name="subscribe_pro_applepay" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>

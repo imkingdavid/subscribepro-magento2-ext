@@ -71,6 +71,29 @@
                 <paymentInfoKeys>cc_type,cc_number,transaction_id,transaction_type,gateway_type,avs_code,avs_message,cvv_code,cvv_message,response_message</paymentInfoKeys>
                 <privateInfoKeys>transaction_id,transaction_type,gateway_type,avs_code,avs_message,cvv_code,cvv_message,response_message</privateInfoKeys>
             </subscribe_pro>
+            <subscribe_pro_applepay>
+                <model>SubscribeProApplePay</model>
+                <title>SubscribePro (Apple Pay)</title>
+                <active>0</active>
+                <payment_action>authorize</payment_action>
+                <allowspecific>0</allowspecific>
+                <require_billing_address>0</require_billing_address>
+                <allow_shipping_address_override>0</allow_shipping_address_override>
+                <display_on_shopping_cart>0</display_on_shopping_cart>
+                <order_status>processing</order_status>
+                <is_gateway>1</is_gateway>
+                <can_use_checkout>1</can_use_checkout>
+                <can_authorize>1</can_authorize>
+                <can_capture>1</can_capture>
+                <can_capture_partial>1</can_capture_partial>
+                <can_refund>1</can_refund>
+                <can_refund_partial_per_invoice>1</can_refund_partial_per_invoice>
+                <can_void>1</can_void>
+                <can_cancel>1</can_cancel>
+                <privateInfoKeys>processorAuthorizationCode,processorResponseCode,processorResponseText</privateInfoKeys>
+                <paymentInfoKeys>processorAuthorizationCode,processorResponseCode,processorResponseText</paymentInfoKeys>
+                <merchant_name>Store</merchant_name>
+            </subscribe_pro_applepay>
             <subscribe_pro_vault>
                 <model>SubscribeProVaultAdapter</model>
                 <title>Stored Cards (SubscribePro)</title>

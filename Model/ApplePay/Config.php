@@ -1,8 +1,8 @@
 <?php
 
-namespace Swarming\SubscribePro\Model\Config;
+namespace Swarming\SubscribePro\Model\ApplePay;
 
-class ApplePay extends \Magento\Payment\Gateway\Config\Config
+class Config extends \Magento\Payment\Gateway\Config\Config
 {
     /**
      * Get merchant name to display

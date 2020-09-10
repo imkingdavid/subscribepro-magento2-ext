@@ -63,6 +63,9 @@ class ApplePay implements ApplePayInterface, CsrfAwareActionInterface
         $this->logger = $logger;
     }
 
+    /**
+     * @return \Magento\Framework\Controller\Result\Json
+     */
     public function onShippingContactSelected()
     {
         $result = $this->jsonResultFactory->create();
@@ -101,6 +104,9 @@ class ApplePay implements ApplePayInterface, CsrfAwareActionInterface
         return $result;
     }
 
+    /**
+     * @return \Magento\Framework\Controller\Result\Json
+     */
     public function onShippingMethodSelected()
     {
         $result = $this->jsonResultFactory->create();
@@ -128,6 +134,9 @@ class ApplePay implements ApplePayInterface, CsrfAwareActionInterface
         return $result;
     }
 
+    /**
+     * @return \Magento\Framework\Controller\Result\Json
+     */
     public function onPaymentAuthorized()
     {
         $result = $this->jsonResultFactory->create();
@@ -156,11 +165,19 @@ class ApplePay implements ApplePayInterface, CsrfAwareActionInterface
         return $result;
     }
 
+    /**
+     * @param RequestInterface $request
+     * @return InvalidRequestException|null
+     */
     public function createCsrfValidationException(RequestInterface $request): ?InvalidRequestException
     {
         return null;
     }
 
+    /**
+     * @param RequestInterface $request
+     * @return bool|null
+     */
     public function validateForCsrf(RequestInterface $request): ?bool
     {
         return true;

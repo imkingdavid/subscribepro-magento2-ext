@@ -52,4 +52,21 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Swarming\SubscribePro\Block\ApplePay\Shortcut\Button">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="template" xsi:type="string">Swarming_SubscribePro::applepay/shortcut.phtml</item>
+                <item name="alias" xsi:type="string">subscribe_pro.applepay.mini-cart</item>
+                <item name="button_id" xsi:type="string">subscribe-pro-applepay-mini-cart</item>
+            </argument>
+            <argument name="payment" xsi:type="object">SubscribeProApplePay</argument>
+        </arguments>
+    </type>
+
+    <type name="Swarming\SubscribePro\Block\ApplePay\Product\View">
+        <arguments>
+            <argument name="payment" xsi:type="object">SubscribeProApplePay</argument>
+        </arguments>
+    </type>
 </config>

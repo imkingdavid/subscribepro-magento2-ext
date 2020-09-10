@@ -8,8 +8,10 @@ use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Payment\Model\Method\Free;
+use Psr\Log\LoggerInterface;
 use Swarming\SubscribePro\Gateway\Config\Config;
 use Swarming\SubscribePro\Gateway\Config\ConfigProvider;
+use Swarming\SubscribePro\Model\ApplePay\Ui\ConfigProvider as ApplePayConfigProvider;
 use Swarming\SubscribePro\Helper\Quote;
 
 class Availability implements ObserverInterface
@@ -25,15 +27,23 @@ class Availability implements ObserverInterface
     protected $quoteHelper;
 
     /**
+     * @var LoggerInterface
+     */
+    protected $logger;
+
+    /**
      * @param Session $checkoutSession
      * @param Quote $quoteHelper
+     * @param LoggerInterface $logger
      */
     public function __construct(
         Session $checkoutSession,
-        Quote $quoteHelper
+        Quote $quoteHelper,
+        LoggerInterface $logger
     ) {
         $this->checkoutSession = $checkoutSession;
         $this->quoteHelper = $quoteHelper;
+        $this->logger = $logger;
     }
 
     /**
@@ -60,6 +70,8 @@ class Availability implements ObserverInterface
         $methodCode = $methodInstance->getCode();
         $isAvailable = $result->getData('is_available');
 
+        $this->logger->info('Original value: ' . $methodCode . ' is ' . ($isAvailable ? '' : 'not ') . 'available.');
+
         if ($isAvailable) {
             $isActiveNonSubscription = $methodInstance->getConfigData(Config::KEY_ACTIVE_NON_SUBSCRIPTION);
 
@@ -70,6 +82,7 @@ class Availability implements ObserverInterface
                         $isAvailable = $this->quoteHelper->isRecurringQuote($quote);
                         break;
                     case ConfigProvider::CODE:
+                    case ApplePayConfigProvider::METHOD_CODE:
                         $isAvailable = true;
                         break;
                     default:
@@ -79,6 +92,8 @@ class Availability implements ObserverInterface
             } elseif (ConfigProvider::CODE == $methodCode && !$isActiveNonSubscription) {
                 $isAvailable = false;
             }
+
+            $this->logger->info($methodCode . ' is ' . ($isAvailable ? '' : 'not ') . 'available.');
 
             $result->setData('is_available', $isAvailable);
         }

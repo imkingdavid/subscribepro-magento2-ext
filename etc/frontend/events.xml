@@ -12,4 +12,7 @@
     <event name="checkout_allow_guest">
         <observer name="subscribe_pro_checkout_allow_guest" instance="Swarming\SubscribePro\Observer\Checkout\IsAllowedGuest" />
     </event>
+    <event name="shortcut_buttons_container">
+        <observer name="subscribe_pro_applepay_shortcuts" instance="Swarming\SubscribePro\Observer\ApplePay\AddShortcuts" />
+    </event>
 </config>

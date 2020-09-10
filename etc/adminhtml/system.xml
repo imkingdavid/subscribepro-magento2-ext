@@ -276,6 +276,48 @@
                     <frontend_class>validate-number</frontend_class>
                 </field>
             </group>
+
+            <group id="subscribe_pro_applepay" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Subscribe Pro (ApplePay)</label>
+
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="active_non_subscription" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled for Non-Subscription Transactions</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="title" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+
+                <field id="merchant_name" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Merchant Name</label>
+                    <comment>
+                        <![CDATA[Displayed to the customer in the Apple Pay dialog.]]>
+                    </comment>
+                </field>
+
+                <field id="merchant_domain_name" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Merchant Domain Name</label>
+                    <comment>
+                        <![CDATA[Specify the merchant domain name to use for Apple Pay payment processing.]]>
+                    </comment>
+                </field>
+
+                <field id="payment_action" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment Action</label>
+                    <source_model>Swarming\SubscribePro\Model\Config\Source\PaymentAction</source_model>
+                </field>
+
+                <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sort Order</label>
+                    <frontend_class>validate-number</frontend_class>
+                </field>
+            </group>
         </section>
     </system>
 </config>
