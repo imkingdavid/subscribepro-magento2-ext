@@ -461,4 +461,9 @@
         </arguments>
     </virtualType>
 
+    <type name="Swarming\SubscribePro\Block\ApplePay\Info">
+        <arguments>
+            <argument name="config" xsi:type="object">Swarming\SubscribePro\ApplePay\Config</argument>
+        </arguments>
+    </type>
 </config>

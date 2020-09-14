@@ -21,6 +21,7 @@ define(
         return {
             init: function (element, context) {
                 console.log('init apple pay button');
+                console.log(element);
                 // No element or context
                 if (!element || !context) {
                     return;
@@ -148,6 +149,8 @@ define(
 
                     applePaySession.begin();
                 });
+                console.log(element, el);
+                element.appendChild(el);
             },
 
             /**

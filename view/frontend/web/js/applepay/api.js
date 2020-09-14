@@ -1,5 +1,5 @@
 /**
- * Braintree Apple Pay button API
+ * Subscribe Pro Apple Pay button API
  *
  **/
 define(
@@ -30,6 +30,7 @@ define(
             },
 
             initialize: function () {
+                console.log('apple pay api init');
                 this._super();
                 if (!this.countryDirectory) {
                     storage.get("rest/V1/directory/countries").done(function (result) {
@@ -53,6 +54,7 @@ define(
              * Get region ID
              */
             getRegionId: function (countryCode, regionName) {
+                console.log('getRegionId');
                 if (typeof regionName !== 'string') {
                     return null;
                 }

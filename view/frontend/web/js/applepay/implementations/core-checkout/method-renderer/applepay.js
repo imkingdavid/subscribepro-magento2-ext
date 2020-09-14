@@ -1,5 +1,5 @@
 /**
- * Braintree Apple Pay payment method integration.
+ * Subscribe Pro Apple Pay payment method integration.
  **/
 define([
     'Magento_Checkout/js/view/payment/default',
@@ -24,6 +24,8 @@ define([
          * Inject the apple pay button into the target element
          */
         getApplePayBtn: function (id) {
+            console.log('getting apple pay button');
+            console.log(id);
             button.init(
                 document.getElementById(id),
                 this
@@ -34,6 +36,7 @@ define([
          * Subscribe to grand totals
          */
         initObservable: function () {
+            console.log('apple pay renderer');
             this._super();
             this.grandTotalAmount = parseFloat(quote.totals()['base_grand_total']).toFixed(2);
 
@@ -50,6 +53,7 @@ define([
          * Apple pay place order method
          */
         startPlaceOrder: function (nonce, event, session) {
+            console.log('start place order');
             this.setPaymentMethodNonce(nonce);
             this.placeOrder();
 

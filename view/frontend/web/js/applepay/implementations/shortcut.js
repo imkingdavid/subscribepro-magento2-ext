@@ -1,5 +1,5 @@
 /**
- * Braintree Apple Pay mini cart payment method integration.
+ * Subscribe Pro Apple Pay mini cart payment method integration.
  **/
 define(
     [
@@ -34,6 +34,7 @@ define(
              * @returns {Object}
              */
             initialize: function () {
+                console.log('shortcut initialize')
                 this._super();
                 if (!this.displayName) {
                     this.displayName = $t('Store');
@@ -48,6 +49,7 @@ define(
                 api.setIsLoggedIn(this.isLoggedIn);
                 api.setStoreCode(this.storeCode);
 
+                console.log('shortcut button init');
                 // Attach the button
                 button.init(
                     document.getElementById(this.id),

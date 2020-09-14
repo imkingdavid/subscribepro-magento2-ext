@@ -3,16 +3,12 @@ define(
     [
         'jquery',
         'underscore',
-        'Swarming_SubscribePro/js/model/payment/config',
-        'Swarming_SubscribePro/js/model/payment/spreedly',
-        'mage/translate'
+        'Swarming_SubscribePro/js/model/payment/config'
     ],
     function(
         $,
         _,
-        config,
-        spreedly,
-        $t
+        config
     ) {
         'use strict';
 
@@ -31,21 +27,26 @@ define(
             },
 
             initialize: function () {
+                console.log('applepay payment method initialize');
                 this._super();
                 this.showApplePayButtons();
             },
 
             showApplePayButtons: function() {
+                console.log('show buttons?');
                 if (!this.customerLoggedIn || !this.config.cartHasProductsToCreateNewSubscription || !window.ApplePaySession) {
                     return;
                 }
 
                 if (window.ApplePaySession.canMakePayments) {
+                    console.log('show!');
                     $('.sp-apple-pay-button-container').click(this.onApplePayButtonClicked.bind(this)).show();
                 }
             },
 
             onApplePayButtonClicked: function() {
+
+                console.log('Apple Pay clicked');
                 var self = this;
 
                 const paymentRequest = this.paymentRequest;
@@ -160,16 +161,6 @@ define(
                 return newTotal;
             },
 
-
-            initSpreedly: function () {
-                spreedly.init(
-                    $.proxy(this.onFieldEvent, this),
-                    $.proxy(this.onPaymentMethod, this),
-                    $.proxy(this.validationPaymentData, this),
-                    $.proxy(this.onErrors, this)
-                );
-            },
-
             onFieldEvent: function (name, event, activeElement, inputData) {
                 var hostedField = hostedFieldValidator(name, event, inputData);
                 if (hostedField.isValid !== undefined) {
@@ -202,27 +193,15 @@ define(
             },
 
             startPlaceOrder: function () {
-                if (this.isValidHostedFields && this.isValidExpDate) {
-                    spreedly.validate();
-                }
+                // todo
             },
 
             validationPaymentData: function (inputProperties) {
-                if (inputProperties['validNumber'] && (inputProperties['validCvv'] || !config.hasVerification())) {
-                    this.tokenizeCreditCard();
-                }
-
-                if (!inputProperties['validNumber']) {
-                    hostedFields.addClass('number', 'invalid');
-                }
-
-                if (!inputProperties['validCvv'] && config.hasVerification()) {
-                    hostedFields.addClass('cvv', 'invalid');
-                }
+                // todo
             },
 
             tokenizeCreditCard: function () {
-                spreedly.tokenizeCreditCard(this.getPaymentData());
+                // todo
             },
 
             getPaymentData: function () {
@@ -234,23 +213,12 @@ define(
                 this.submitPayment();
             },
 
-            submitPayment: function () {},
+            submitPayment: function () {
+                //todo
+            },
 
             onErrors: function (errors) {
                 this.paymentMethodToken(null);
-
-                for(var i = 0; i < errors.length; i++) {
-                    if (errors[i]['attribute'] == 'number' || errors[i]['attribute'] == 'cvv') {
-                        hostedFields.addClass(errors[i]['attribute'], 'invalid');
-                    }
-                    if (errors[i]['attribute'] == 'month' || errors[i]['attribute'] == 'year') {
-                        expirationFields.addClass(errors[i]['attribute'], 'invalid');
-                    }
-                }
-            },
-
-            getIcons: function (type) {
-                return config.getIcons().hasOwnProperty(type) ? config.getIcons()[type] : false;
             },
 
             getCcAvailableTypesValues: function () {
@@ -260,17 +228,6 @@ define(
                         'type': value
                     };
                 });
-            },
-
-            hasVerification: function () {
-                return config.hasVerification();
-            },
-
-            getCvvImageHtml: function () {
-                return '<img src="' + config.getCvvImageUrl() +
-                    '" alt="' + $t('Card Verification Number Visual Reference') +
-                    '" title="' + $t('Card Verification Number Visual Reference') +
-                    '" />';
             }
         };
     }

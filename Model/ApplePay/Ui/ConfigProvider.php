@@ -111,6 +111,7 @@ class ConfigProvider implements ConfigProviderInterface
      */
     public function getPaymentMarkSrc()
     {
+        //return 'test';
         return $this->assetRepo->getUrl('PayPal_Braintree::images/applepaymark.png');
     }
 

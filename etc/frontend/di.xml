@@ -4,6 +4,7 @@
         <arguments>
             <argument name="configProviders" xsi:type="array">
                 <item name="subscribe_pro_config_provider" xsi:type="object">Swarming\SubscribePro\Ui\ConfigProvider\Checkout</item>
+                <item name="subscribe_pro_applepay_config_provider" xsi:type="object">Swarming\SubscribePro\Model\ApplePay\Ui\ConfigProvider</item>
             </argument>
         </arguments>
     </type>
